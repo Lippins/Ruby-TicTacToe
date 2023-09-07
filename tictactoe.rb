@@ -91,10 +91,9 @@ class TicTacToe
 
     setup_players
     play_game
-
-    # setup_players
-    # play_game
   end
+
+  private
 
   def display_guide
     puts "\t\t----------------     1 | 2 | 3
@@ -114,6 +113,7 @@ class TicTacToe
 
   def replay_game
     @board = Board.new
+    @board.show_board
     @game_over = false
     play_game if replay?
   end
@@ -158,8 +158,6 @@ class TicTacToe
   end
 
   def setup_players
-    # return unless players_ready?
-
     @player_one = Player.new('X')
     @player_two = Player.new('O')
     puts "Alright! It's #{@player_one.name} against #{@player_two.name}. lets roll!"
