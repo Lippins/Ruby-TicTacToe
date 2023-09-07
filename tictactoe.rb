@@ -75,6 +75,8 @@ class Player
     place_sign(board)
   end
 
+  private
+
   def choose_position
     puts "#{@name}, pick a position from 1 - 9"
     gets.chomp.to_i
