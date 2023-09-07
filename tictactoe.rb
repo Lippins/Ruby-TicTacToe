@@ -33,14 +33,6 @@ class Board
     !taken?(position) && !out_of_range?(position)
   end
 
-  def taken?(position)
-    @board[position - 1] == 'X' || @board[position - 1] == 'O'
-  end
-
-  def out_of_range?(position)
-    !(position - 1).between?(0, 8)
-  end
-
   def full?
     @board.all? { |position| %w[X O].include?(position) }
   end
@@ -49,6 +41,16 @@ class Board
     WINNING_COMBINATIONS.any? do |combo|
       combo.all? { |position| @board[position] == 'X' } || combo.all? { |position| @board[position] == 'O' }
     end
+  end
+
+  private
+
+  def taken?(position)
+    @board[position - 1] == 'X' || @board[position - 1] == 'O'
+  end
+
+  def out_of_range?(position)
+    !(position - 1).between?(0, 8)
   end
 end
 
@@ -92,6 +94,7 @@ class TicTacToe
     return unless players_ready?
 
     setup_players
+    @board.show_board
     play_game
   end
 
@@ -165,3 +168,5 @@ class TicTacToe
     puts "Alright! It's #{@player_one.name} against #{@player_two.name}. lets roll!"
   end
 end
+
+TicTacToe.new
